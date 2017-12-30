@@ -33,7 +33,8 @@
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
 
-        <input class="form-control"
+        <input [ngClass]="{'is-invalid': (apellido.errors?.minlength || apellido.errors?.required) && apellido.touched }"
+               class="form-control"
                type="text"
                placeholder="Apellido"
                name="apellido"
@@ -42,10 +43,10 @@
                required
                #apellido="ngModel">
 
-              <div *ngIf="apellido.errors?.required">
+              <div class="invalid-feedback" *ngIf="apellido.errors?.required">
                 Este campo es requerido.
               </div>
-              <div *ngIf="apellido.errors?.minlength">
+              <div class="invalid-feedback" *ngIf="apellido.errors?.minlength">
                 Por lo menos {{ apellido.errors.minlength.requiredLength }} caracteres.
               </div>
       </div>
@@ -56,8 +57,9 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-md-8">
-
-      <input class="form-control"
+      <!-- otra forma mas simple de hacerlo correo.invalid -->
+      <input [ngClass]="{'is-invalid': correo.invalid && correo.touched }"
+             class="form-control"
              type="email"
              placeholder="Correo electrónico"
              name="correo"
@@ -66,10 +68,10 @@
              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
              #correo="ngModel">
 
-            <div *ngIf="correo.errors?.required">
+            <div class="invalid-feedback" *ngIf="correo.errors?.required">
               Este campo es requerido.
             </div>
-            <div *ngIf="correo.errors?.pattern">
+            <div class="invalid-feedback" *ngIf="correo.errors?.pattern">
               Debe ser un correo válido.
             </div>
     </div>
