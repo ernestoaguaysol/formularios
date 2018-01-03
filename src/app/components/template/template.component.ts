@@ -15,8 +15,19 @@ export class TemplateComponent implements OnInit {
   usuario: Object = {
     nombre: null,
     apellido: null,
-    correo: null
+    correo: null,
+    pais: '',
+    sexo: 'Hombre'
   };
+
+  paises = [{
+    codigo: 'CRI',
+    nombre: 'Costa Rica'
+  },
+  {
+    codigo: 'ESP',
+    nombre: 'España'
+  }];
 
   constructor() { }
 
