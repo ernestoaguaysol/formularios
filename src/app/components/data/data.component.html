@@ -8,10 +8,19 @@
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
 
-        <input class="form-control"
+        <input [ngClass]="{'is-invalid': !forma.get('nombre').valid}"
+               class="form-control"
                type="text"
                placeholder="Nombre"
                formControlName="nombre">
+        <div class="invalid-feedback">
+          <div *ngIf="forma.controls['nombre'].errors?.required">
+            El nombre es necesario.
+          </div>
+          <div *ngIf="forma.controls['nombre'].errors?.minlength">
+            Por lo menos 3 caracteres.
+          </div>
+        </div>
       </div>
     </div>
 
@@ -36,6 +45,7 @@
              type="email"
              placeholder="Correo electrónico"
              formControlName="correo">
+      
     </div>
   </div>
 
