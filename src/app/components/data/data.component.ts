@@ -8,12 +8,23 @@ import { FormGroup , FormControl , Validators } from '@angular/forms';
 })
 export class DataComponent {
 
+  usuario: Object = {
+    nombreCompleto: {
+      nombre: 'ernesto',
+      apellido: 'aguaysol'
+    },
+    correo: 'ernes@gmail.com'
+  };
+
   forma: FormGroup;
 
   constructor() {
     this.forma = new FormGroup({
-      'nombre': new FormControl('', [Validators.required, Validators.minLength(3)] ),
-      'apellido': new FormControl('', Validators.required),
+
+      nombreCompleto: new FormGroup({
+        'nombre': new FormControl('', [Validators.required, Validators.minLength(3)] ),
+        'apellido': new FormControl('', Validators.required)
+      }),
       'correo': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")])
     });
   }
